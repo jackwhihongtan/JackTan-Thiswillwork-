@@ -49,7 +49,7 @@ public class Quadratic {
 		aos = -1 * b / (2 * a);
 		vertexY = (4 * a * c - b * b)/ (4 * a);
 		if (discriminant <= 0) {
-			String xcept = "Does not exist";
+			String xcept = "None";
 		}else {
 			xcept1 = (-1 * a + (Quadratic.sqrt(Quadratic.discriminant(a, b, c) / (2 * a)))); //but put discrim in sqrt for the square root  
 			xcept2 = (-1 * a - (Quadratic.sqrt(Quadratic.discriminant(a, b, c) / (2 * a))));

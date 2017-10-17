@@ -1,4 +1,4 @@
-
+//Jack Tan 10/17/17
 public class Quadratic {
 	public static double discriminant (double a, double b, double c) { 
 		return b * b - 4 * a * c;

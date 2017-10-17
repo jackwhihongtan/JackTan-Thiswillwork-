@@ -1,3 +1,4 @@
+//Jack Tan 10/17/17
 import java.util.Scanner;
 
 public class QuadraticClient {

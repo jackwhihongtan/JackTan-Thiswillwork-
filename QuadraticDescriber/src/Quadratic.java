@@ -55,7 +55,7 @@ public class Quadratic {
 			xcept2 = (-1 * a - (Quadratic.sqrt(Quadratic.discriminant(a, b, c) / (2 * a))));
 		}
 		ycept = c;
-		return "Opens: " + direction + "/n Axis of Symmetry: " + aos + "/n Vertex: " + "(" +aos + "," + vertexY +")" + "/n x-intercept(s): " + xcept1 + "," + xcept2 + "/n y-intercept: " + ycept +""; 
+		return "Opens: " + direction + "\n Axis of Symmetry: " + aos + "\n Vertex: " + "(" +aos + "," + vertexY +")" + "\n x-intercept(s): " + xcept1 + " and " + xcept2 + "\n y-intercept: " + ycept +""; 
 	}
 }	
 	

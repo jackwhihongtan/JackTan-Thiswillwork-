@@ -1,6 +1,6 @@
 
 public class Quadratic {
-	public static int discriminant (int a, int b, int c) { 
+	public static double discriminant (double a, double b, double c) { 
 		return b * b - 4 * a * c;
 	}
 	public static double round2 (double x) {
@@ -32,7 +32,7 @@ public class Quadratic {
 	}
 	
 
-	public static String quadDescriber(int a, int b, int c) {
+	public static String quadDescriber(double a, double b, double c) {
 		boolean done = false;
 		double ycept = 0;
 		double xcept1 = 0;
@@ -55,7 +55,7 @@ public class Quadratic {
 			xcept2 = (-1 * a - (Quadratic.sqrt(Quadratic.discriminant(a, b, c) / (2 * a))));
 		}
 		ycept = c;
-		return "Opens: " + direction + "/n Aos: " + aos + "/n Vertex: " + "(" +aos + "," + vertexY +")" + "/n X-Intercept: " + xcept1 + "," + xcept2 + "/n Y-Intercept: " + ycept +""; 
+		return "Opens: " + direction + "/n Axis of Symmetry: " + aos + "/n Vertex: " + "(" +aos + "," + vertexY +")" + "/n x-intercept(s): " + xcept1 + "," + xcept2 + "/n y-intercept: " + ycept +""; 
 	}
 }	
 	

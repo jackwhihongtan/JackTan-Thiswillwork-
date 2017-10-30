@@ -5,7 +5,11 @@ import java.util.Arrays;
 public class Split {
 	public static void main(String[] args) {
 		String[] original = Getthefilling ("applespineapplesbreadlettusbreadtomatobaconmayohambreadcheese");
-		System.out.println(Arrays.toString(original));
+		String inside = (Arrays.toString(original)); //delete the array and print everything that is in it
+		for (String i : original) {
+			System.out.print(i);
+		}
+		
 	}	
 	//precode for part 1
 			// make a method called gettheFilling make an array make a  test for each word 

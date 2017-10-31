@@ -46,8 +46,8 @@ public class Calculate {
 			int first = a * c; 
 			int outside = a * d;
 			int inside = b *c;
-			int last = a * d;
-			return (first + "n^2 " + outside + inside + "n" + last); //made sure to add + for the string part
+			int last = b * d;
+			return (first + "n^2" + outside + inside + "n" + last); //made sure to add + for the string part
 		}
 			
 		public static boolean isDivisibleBy (int numerator, int denominator) {

@@ -7,19 +7,19 @@ public class Calculate {
 			int square = operand * operand; // I tried to compute X^2
 			return square;
 		}
-		public static int cube (int alpha) { //takes one int
-			int cube = alpha * alpha * alpha; // = X^3
+		public static int cube (int num) { //takes one int
+			int cube = num * num * num; // = X^3
 			return cube; 
 		}
-		public static double average (double beta1, double beta2) { //can use in stats, takes only 2 values can change for more
-			double Totalvalue = beta1 + beta2;
-			double Total = Totalvalue / 2; //divides by how many values we have
-					return Total;
+		public static double average (double value1, double value2) { //can use in stats, takes only 2 values can change for more
+			double Totalvalue = value1 + value2;
+			double average = Totalvalue / 2; //divides by how many values we have
+					return average;
 		}
-		public static double average (double kappa1, double kappa2, double kappa3) { // 3 terms accepted
-			double Sum = kappa1 + kappa2 + kappa3;
-			double allSum = Sum / 3; 
-			return allSum; 
+		public static double average (double num1, double num2, double num3) { // 3 terms accepted
+			double Sum = num1 + num2 + num3;
+			double average = Sum / 3; 
+			return average; 
 		}
 		public static double toRadians (double degree) { //From degree to pi
 			double radian = ((degree * 3.14159) / 180); 
@@ -35,19 +35,19 @@ public class Calculate {
 		public static int discriminant (int a, int b, int c) { //overload
 			return b * b - 4 * a * c;
 		}
-		public static String toImproperFrac (int a, int b, int c) {
-			return ((a * c) + b) + "/" + c; //make sure order of operation is true
+		public static String toImproperFrac (int wholenum, int numea, int denom) {
+			return ((wholenum * denom) + numea) + "/" + denom; //make sure order of operation is true
 		}
-		public static String toMixedNum (int a, int b) {
-			String answer = a / b + "_" + a % b + "/" + 2; //used "" in order to add that character not to actually divide
+		public static String toMixedNum (int noom, int denom) {
+			String answer = noom / denom + "_" + noom % denom + "/" + 2; //used "" in order to add that character not to actually divide
 			return answer;
 		}
-		public static String foil (int a, int b, int c, int d) { //do formula (ax + b) (cx + d)
+		public static String foil (int a, int b, int c, int d, String n) { //do formula (ax + b) (cx + d)
 			int first = a * c; 
 			int outside = a * d;
 			int inside = b *c;
 			int last = b * d;
-			return (first + "n^2" + outside + inside + "n" + last); //made sure to add + for the string part
+			return (first + "n^2" + " " + " + " + (outside + inside) + "n" + " + " + " " + last); //made sure to add + for the string part
 		}
 			
 		public static boolean isDivisibleBy (int numerator, int denominator) {
@@ -57,35 +57,35 @@ public class Calculate {
 				return false; 
 			}
 		}
-		public static double absValue (double a) { //simple if it is negative make it positive
-			if (a > 0) {
-				return a;
+		public static double absValue (double value) { //simple if it is negative make it positive
+			if (value > 0) {
+				return value;
 			} else { //no need for else if because we have 2 options only
-				return a * -1;
+				return value * -1;
 			}
 		}
 	
-		public static int absValue (int a) { //for int for part 4
-		if (a > 0) {
-			return a;
+		public static int absValue (int value) { //for int for part 4
+		if (value > 0) {
+			return value;
 		} else {
-			return a * -1;
+			return value * -1;
 		}
 	}
-		public static double max (double a, double b) { //checks for max
-			if (a > b) {
-				return a;
+		public static double max (double num1, double num2) { //checks for max
+			if (num1 > num2) {
+				return num1;
 			} else {
-				return b;
+				return num2;
 			}
 		}
-		public static double max (double a, double b, double c) { //three values mean more conditions 
-			if (a > b && a > c) {
-				return a;
-			} else if (b > a && b > c){ //used && to save space
-				return b;
+		public static double max (double value1, double value2, double value3) { //three values mean more conditions 
+			if ( value1 > value2 && value1 > value3) {
+				return value1;
+			} else if (value2 > value1 && value2 > value3){ //used && to save space
+				return value2;
 			} else {
-				return c;
+				return value3;
 			}
 		}
 			public static int min (int first, int second) { //opposite of max
@@ -138,6 +138,7 @@ public class Calculate {
 					boolean prime = true;
 						for (int i = 2; i < number; i++) {
 							if (Calculate.isDivisibleBy(number, i) == true) { //called for divisibleby to test value
+								return false;
 							}
 						}
 						return prime; 
@@ -158,35 +159,34 @@ public class Calculate {
 			}
 			
 			public static double sqrt (double num) {
-				if (num < 0) {
-					throw new IllegalArgumentException ("Undefined"); //free check because anything less than zero this program execute
+				if (num == 0) {
+					return 0;
 				}
-				double squareRoot = 1;
-					while (squareRoot * squareRoot > (num + .1) || squareRoot * squareRoot < (num - .1)) { 
-						while (squareRoot * squareRoot < num) {
-							squareRoot = squareRoot + .01; // to make the value in between the require boundary
-						}
-							if (squareRoot * squareRoot > num) {
-									squareRoot = squareRoot - .01;
-						}
-					}
-						return (Calculate.round2(squareRoot)); //rounds it to make sure we don't have 3 demical places
-			}
+				double t = 0;
+				
+				double squareRoot = num / 2;
+				do {
+						t = squareRoot;
+						squareRoot = (t + (num / t)) / 2;
+				} while ((t - squareRoot) != 0);
+				return squareRoot;
+						
+				}
 	
-			public static String quadform (int num1, int num2, int num3) {
+			public static String quadForm (int num1, int num2, int num3) {
 				if (Calculate.discriminant(num1, num2, num3) < 0) {
-					throw new IllegalArgumentException ("No real roots"); //tested if discrim is negative because it is not possible
+					return "no real roots"; //tested if discrim is negative because it is not possible
 				}
 				String answer = "";
-					double ans1 = (-1 * num1 + (Calculate.sqrt(Calculate.discriminant(num1, num2, num3) / (2 * num1)))); //but put discrim in sqrt for the square root  
-					double ans2 = (-1 * num1 - (Calculate.sqrt(Calculate.discriminant(num1, num2, num3) / (2 * num1)))); //then we need one for + and -
-		
+					double ans1 = ((-num2 + (Calculate.sqrt(Calculate.discriminant(num1, num2, num3)))) / (2 * num1)); //but put discrim in sqrt for the square root  
+					double ans2 = ((-num2 - (Calculate.sqrt(Calculate.discriminant(num1, num2, num3)))) / (2 * num1)); //then we need one for + and -
+					System.out.println(Calculate.sqrt(Calculate.discriminant(num1, num2, num3)));
 						if (ans1 == ans2) {
 							return ("\"" + Calculate.round2(ans1) + "\""); //returns one value if both are the same
 						}
 							else {
 								answer =  "\"" + Calculate.round2(ans1) + " and " + Calculate.round2(ans2) + "\""; //returns two different answers 
 								return answer; 
-						}
-				}
+			}
+		}
 	}

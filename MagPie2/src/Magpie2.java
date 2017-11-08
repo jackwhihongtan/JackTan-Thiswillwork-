@@ -25,6 +25,12 @@ public class Magpie2 {
 			else if (statement.indexOf("nani") >= 0) {
 				response = "omae wa mou shindeiru.";
 			}
+			else if (statement.indexOf("Kill") >=0) {
+				response = "Call 1-800-273-8255";
+			}
+			else if (statement.indexOf("Life") >=0)
+				response = "Did life give you lemons?";
+		{
 		else if (statement.indexOf("Ms.Dreyer") >= 0
 				|| statement.indexOf("Ms.Ip") >= 0)
 			response = "She sounds like a good teacher.";

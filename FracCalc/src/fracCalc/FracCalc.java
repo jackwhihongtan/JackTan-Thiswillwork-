@@ -26,7 +26,7 @@ public class FracCalc {
     public static String produceAnswer(String input)
     { 
         // TODO: Implement this function to produce the solution to the input
-    	String[] numsOfInts = input.split("");
+    	String[] numsOfInts = input.split(" ");
     	int arrlen = numsOfInts.length;
         return numsOfInts[arrlen - 1];
     }

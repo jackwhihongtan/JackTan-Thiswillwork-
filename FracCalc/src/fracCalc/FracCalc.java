@@ -7,12 +7,14 @@ public class FracCalc {
     public static void main(String[] args) 
     {
         // TODO: Read the input from the user and call produceAnswer with an equation
+    	boolean run = false;
+    	while (run = false) {
     	Scanner sc = new Scanner(System.in);
     	System.out.println("Please input the fractions:");
     	String fractions = sc.nextLine();
-    	System.out.println(fractions);
-    	String lastString = produceAnswer(fractions);
-    	System.out.println(lastString);
+    	String lastString = Parse(fractions);
+    	String answer = produceAnswer(lastString);
+    	}	
     }
     
     // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
@@ -26,10 +28,24 @@ public class FracCalc {
     public static String produceAnswer(String input)
     { 
         // TODO: Implement this function to produce the solution to the input
+    	if (input.indexOf('_') != 0) {
+    		String[] firstVal = input.split("_");
+    		String wholeNum = firstVal[0];
+    		
+    	}
     	String[] numsOfInts = input.split(" ");
     	int arrlen = numsOfInts.length;
         return numsOfInts[arrlen - 1];
     }
+    
+    public static String Parse(String input)
+    { 
+        // TODO: Implement this function to produce the solution to the input
+    	String[] lastValue = input.split(" ");
+    	int arrlen = lastValue.length;
+        return lastValue[arrlen - 1];
+    
+    
 
     // TODO: Fill in the space below with any helper methods that you think you will need
     

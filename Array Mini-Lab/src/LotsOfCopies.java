@@ -1,9 +1,9 @@
-<<<<<<< HEAD
+
 import java.util.Arrays;
 
-=======
+
 //Jack Tan 11/1/17
->>>>>>> branch 'master' of https://github.com/jackwhihongtan/JackTan-Thiswillwork-.git
+
 public class LotsOfCopies {
 	public static void main(String[] args) {
 		int num = 7;

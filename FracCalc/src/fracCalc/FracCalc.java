@@ -3,17 +3,27 @@ package fracCalc;
 import java.util.Scanner;
 
 public class FracCalc {
-
-    public static void main(String[] args) 
+	
+	public static void main(String[] args) 
     {
         // TODO: Read the input from the user and call produceAnswer with an equation
-    	boolean run = false;
-    	while (run = false) {
+    	boolean run = true;
+    	while (run = true) {
     	Scanner sc = new Scanner(System.in);
     	System.out.println("Please input the fractions:");
     	String fractions = sc.nextLine();
-    	String lastString = Parse(fractions);
-    	String answer = produceAnswer(lastString);
+    	String lastvalue = Parse(fractions);
+    	String answer = produceAnswer(lastvalue);
+    	System.out.println(answer);
+    	System.out.println("Are you done yet?");
+    	String finish = sc.next();
+    	
+    	if (finish.equals("quit")) {
+    		run = false;
+    		System.out.println("Thank you");
+    	} else {
+    		run = true;
+    		}
     	}	
     }
     
@@ -27,15 +37,27 @@ public class FracCalc {
     //      e.g. return ==> "1_1/4"
     public static String produceAnswer(String input)
     { 
-        // TODO: Implement this function to produce the solution to the input
-    	if (input.indexOf('_') != 0) {
-    		String[] firstVal = input.split("_");
-    		String wholeNum = firstVal[0];
-    		
+      
+    	if (input.indexOf('_') != -1) {
+    		String wholeNum = input.substring(0,input.indexOf("_"));
+    		String numerator = input.substring(input.indexOf("_" + 1), input.indexOf("/"));
+    		String denominator = input.substring(input.indexOf("/") + 1);
+    		String answer = "whole: " + wholeNum + " numerator: " + numerator + "denominator: " + denominator +"";
+    		return answer;
     	}
-    	String[] numsOfInts = input.split(" ");
-    	int arrlen = numsOfInts.length;
-        return numsOfInts[arrlen - 1];
+    	else if(input.indexOf('/') != -1) {
+    		String wholeNum = "0";
+    		String numerator = input.substring(input.indexOf("_" + 1), input.indexOf("/"));
+    		String denominator = input.substring(input.indexOf("/") + 1);
+    		String answer = "whole:" + wholeNum + " numerator:"+ numerator +" denominator:" + denominator +"";
+    		return answer;
+    	} else {
+    		String wholeNum = input;
+    		String numerator = "1";
+    		String denominator = "0";
+    		String answer = "whole:" + wholeNum +" numerator: " + numerator +"denominator: " + denominator +"";
+    		return answer;
+    	}
     }
     
     public static String Parse(String input)
@@ -48,5 +70,5 @@ public class FracCalc {
     
 
     // TODO: Fill in the space below with any helper methods that you think you will need
-    
+    }
 }

@@ -13,6 +13,7 @@ public class FracCalc {
     	System.out.println("Please input the fractions:");
     	String fractions = sc.nextLine();
     	String lastvalue = Parse(fractions);
+    	System.out.println(lastvalue);
     	String answer = produceAnswer(lastvalue);
     	System.out.println(answer);
     	System.out.println("Are you done yet?");
@@ -37,25 +38,29 @@ public class FracCalc {
     //      e.g. return ==> "1_1/4"
     public static String produceAnswer(String input)
     { 
-      
+    	String numerator = "";
+    	String denominator = "";
+    	
     	if (input.indexOf('_') != -1) {
     		String wholeNum = input.substring(0,input.indexOf("_"));
-    		String numerator = input.substring(input.indexOf("_" + 1), input.indexOf("/"));
-    		String denominator = input.substring(input.indexOf("/") + 1);
-    		String answer = "whole: " + wholeNum + " numerator: " + numerator + "denominator: " + denominator +"";
+    			if(input.indexOf('/') != -1) {
+    				numerator = input.substring(input.indexOf("_") + 1, input.indexOf("/"));
+    				denominator = input.substring(input.indexOf("/") + 1);
+    		}
+    			String answer = "whole:"+ wholeNum +" numerator:"+ numerator + " denominator:"+ denominator +"";
     		return answer;
     	}
     	else if(input.indexOf('/') != -1) {
     		String wholeNum = "0";
-    		String numerator = input.substring(input.indexOf("_" + 1), input.indexOf("/"));
-    		String denominator = input.substring(input.indexOf("/") + 1);
-    		String answer = "whole:" + wholeNum + " numerator:"+ numerator +" denominator:" + denominator +"";
+    		numerator = input.substring(0, input.indexOf("/"));
+    		denominator = input.substring(input.indexOf("/") + 1);
+    		String answer = "whole:"+ wholeNum +" numerator:"+ numerator + " denominator:"+ denominator +"";
     		return answer;
     	} else {
     		String wholeNum = input;
-    		String numerator = "1";
-    		String denominator = "0";
-    		String answer = "whole:" + wholeNum +" numerator: " + numerator +"denominator: " + denominator +"";
+    		numerator = "0";
+    		denominator = "1";
+    		String answer = "whole:"+ wholeNum +" numerator:"+ numerator + " denominator:"+ denominator +"";
     		return answer;
     	}
     }

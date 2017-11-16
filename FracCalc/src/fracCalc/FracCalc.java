@@ -13,13 +13,10 @@ public class FracCalc {
     	System.out.println("Please input the fractions:");
     	String fractions = sc.nextLine();
     	String[] lastvalue = Parse(fractions);
-    	String oper1 = lastvalue[0];
-    	int arrlen = lastvalue.length;
-    	String oper2 = lastvalue[arrlen - 1];
-    	String answer = produceAnswer(oper1);
-    	System.out.println(answer);
-    	String answer2 = produceAnswer(oper2);
-    	System.out.println(answer2);
+    	String firstTerm = (splitOper(Oper1(lastvalue)));
+    	String SecondTerm = (splitOper(Oper2(lastvalue)));
+    	System.out.println(firstTerm);
+    	System.out.println(SecondTerm);
     	System.out.println("Are you done yet?");
     	String finish = sc.next();
     	
@@ -40,35 +37,48 @@ public class FracCalc {
     //        
     // The function should return the result of the fraction after it has been calculated
     //      e.g. return ==> "1_1/4"
-    public static String splitOper1(String)
+    public static String Oper1(String[] lastvalue) {
+    	String oper1 = lastvalue[0];
+    	return oper1;
+    }
+    
+    public static String Oper2(String[] lastvalue) {
+    	int arrlen = lastvalue.length;
+    	String oper2 = lastvalue[arrlen - 1];
+    	return oper2;
+    }
+    
+    public static String splitOper(String input) {
+    	String numerator = "";
+     	String denominator = "";
+     	
+     	if (input.indexOf('_') != -1) {
+     		String wholeNum = input.substring(0,input.indexOf("_"));
+     			if(input.indexOf('/') != -1) {
+     				numerator = input.substring(input.indexOf("_") + 1, input.indexOf("/"));
+     				denominator = input.substring(input.indexOf("/") + 1);
+     		}
+     			String answer = "whole:"+ wholeNum +" numerator:"+ numerator + " denominator:"+ denominator +"";
+     		return answer;
+     	}
+     	else if(input.indexOf('/') != -1) {
+     		String wholeNum = "0";
+     		numerator = input.substring(0, input.indexOf("/"));
+     		denominator = input.substring(input.indexOf("/") + 1);
+     		String answer = "whole:"+ wholeNum +" numerator:"+ numerator + " denominator:"+ denominator +"";
+     		return answer;
+     	} else {
+     		String wholeNum = input;
+     		numerator = "0";
+     		denominator = "1";
+     		String answer = "whole:"+ wholeNum +" numerator:"+ numerator + " denominator:"+ denominator +"";
+     		return answer;
+     	}
+     }
+    
 	public static String produceAnswer(String input)
     { 
-    	
-        String numerator = "";
-    	String denominator = "";
-    	
-    	if (input.indexOf('_') != -1) {
-    		String wholeNum = input.substring(0,input.indexOf("_"));
-    			if(input.indexOf('/') != -1) {
-    				numerator = input.substring(input.indexOf("_") + 1, input.indexOf("/"));
-    				denominator = input.substring(input.indexOf("/") + 1);
-    		}
-    			String answer = "whole:"+ wholeNum +" numerator:"+ numerator + " denominator:"+ denominator +"";
-    		return answer;
-    	}
-    	else if(input.indexOf('/') != -1) {
-    		String wholeNum = "0";
-    		numerator = input.substring(0, input.indexOf("/"));
-    		denominator = input.substring(input.indexOf("/") + 1);
-    		String answer = "whole:"+ wholeNum +" numerator:"+ numerator + " denominator:"+ denominator +"";
-    		return answer;
-    	} else {
-    		String wholeNum = input;
-    		numerator = "0";
-    		denominator = "1";
-    		String answer = "whole:"+ wholeNum +" numerator:"+ numerator + " denominator:"+ denominator +"";
-    		return answer;
-    	}
+		
     }
     
     public static String[] Parse(String Parse)

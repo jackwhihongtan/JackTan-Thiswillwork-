@@ -1,5 +1,6 @@
 package fracCalc;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class FracCalc {
@@ -15,6 +16,7 @@ public class FracCalc {
     	String[] lastvalue = Parse(fractions);
     	String firstTerm = (splitOper(Oper1(lastvalue)));
     	String SecondTerm = (splitOper(Oper2(lastvalue)));
+    	int getTheInt = 0;
     	System.out.println(firstTerm);
     	System.out.println(SecondTerm);
     	System.out.println("Are you done yet?");
@@ -76,8 +78,7 @@ public class FracCalc {
      	}
      }
     
-	public static String produceAnswer(String input)
-    { 
+	public static String produceAnswer(String input) { 
 		
     }
     
@@ -88,9 +89,17 @@ public class FracCalc {
     	String[] lastValue = Parse.split(" ");
     	int arrlen = lastValue.length;
         return lastValue;
-    
-    
-
     // TODO: Fill in the space below with any helper methods that you think you will need
+    }
+    public static int getTheInt(String operon) {
+    	String[] Split = operon.split(" ");
+    	String nums = Arrays.toString(Split);
+    	String[] allNums = nums.split(":");
+    	//maybe make a for loop or while loop that returns each the number for whole, num, denom
+    	int improFrac = Integer.parseInt(operon);
+    	return improFrac;
+    }
+    public static int improFrac (int wholeNum) {
+    	
     }
 }

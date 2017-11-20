@@ -14,11 +14,8 @@ public class FracCalc {
     	System.out.println("Please input the fractions:");
     	String fractions = sc.nextLine();
     	String[] lastvalue = Parse(fractions);
-    	String firstTerm = (splitOper(Oper1(lastvalue)));
-    	String SecondTerm = (splitOper(Oper2(lastvalue)));
-    	int getTheInt = 0;
-    	System.out.println(firstTerm);
-    	System.out.println(SecondTerm);
+    	int firstTerm[] = (splitOper(Oper1(lastvalue)));
+    	int SecondTerm[] = (splitOper(Oper2(lastvalue)));
     	System.out.println("Are you done yet?");
     	String finish = sc.next();
     	
@@ -50,36 +47,35 @@ public class FracCalc {
     	return oper2;
     }
     
-    public static String splitOper(String input) {
-    	String numerator = "";
-     	String denominator = "";
+    public static int[] splitOper(String input) {
+    	
+     	int[] operon = new int[3];
      	
      	if (input.indexOf('_') != -1) {
-     		String wholeNum = input.substring(0,input.indexOf("_"));
+     		operon[0] = Integer.parseInt(input.substring(0,input.indexOf("_")));
      			if(input.indexOf('/') != -1) {
-     				numerator = input.substring(input.indexOf("_") + 1, input.indexOf("/"));
-     				denominator = input.substring(input.indexOf("/") + 1);
+     				operon[1] = Integer.parseInt(input.substring(input.indexOf("_") + 1, input.indexOf("/")));
+     				operon[2] = Integer.parseInt(input.substring(input.indexOf("/") + 1));
      		}
-     			String answer = "whole:"+ wholeNum +" numerator:"+ numerator + " denominator:"+ denominator +"";
-     		return answer;
+     		return operon;
      	}
      	else if(input.indexOf('/') != -1) {
-     		String wholeNum = "0";
-     		numerator = input.substring(0, input.indexOf("/"));
-     		denominator = input.substring(input.indexOf("/") + 1);
-     		String answer = "whole:"+ wholeNum +" numerator:"+ numerator + " denominator:"+ denominator +"";
-     		return answer;
+     		operon[0] = 0;
+     		operon[1] = Integer.parseInt(input.substring(0, input.indexOf("/")));
+     		operon[2] = Integer.parseInt(input.substring(input.indexOf("/") + 1));
+     		return operon;
      	} else {
-     		String wholeNum = input;
-     		numerator = "0";
-     		denominator = "1";
-     		String answer = "whole:"+ wholeNum +" numerator:"+ numerator + " denominator:"+ denominator +"";
-     		return answer;
+     		operon[0] = Integer.parseInt(input.substring(0));
+     		operon[1] = 0;
+     		operon[2] = 1;
+     		return operon;
      	}
      }
     
-	public static String produceAnswer(String input) { 
-		
+	public static String produceAnswer(String fractions) { 
+		if (fractions.indexOf("+") != -1) {
+			//make an addition method
+		}
     }
     
     public static String[] Parse(String Parse)
@@ -91,15 +87,11 @@ public class FracCalc {
         return lastValue;
     // TODO: Fill in the space below with any helper methods that you think you will need
     }
-    public static int getTheInt(String operon) {
-    	String[] Split = operon.split(" ");
-    	String nums = Arrays.toString(Split);
-    	String[] allNums = nums.split(":");
-    	//maybe make a for loop or while loop that returns each the number for whole, num, denom
-    	int improFrac = Integer.parseInt(operon);
-    	return improFrac;
+    public static int[] toImproperFrac (int[] fraction) {
+    	fraction[1] = ((fraction[0] * fraction[2]) + fraction[1]);
+    	return fraction; //make sure order of operation is true
     }
-    public static int improFrac (int wholeNum) {
-    	
+    public static int[] addition(int[] fraction, int[] fraction2) {
+    	fraction[0] = (fraction[0] * fraction2[])
     }
 }

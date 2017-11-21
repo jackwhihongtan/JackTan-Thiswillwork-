@@ -13,10 +13,8 @@ public class FracCalc {
     	Scanner sc = new Scanner(System.in);
     	System.out.println("Please input the fractions:");
     	String fractions = sc.nextLine();
-    	String[] lastvalue = Parse(fractions);
-    	int[] answer = new int[2];
-    	int firstTerm[] = (splitOper(Oper1(lastvalue)));
-    	int SecondTerm[] = (splitOper(Oper2(lastvalue)));
+    	String answer = produceAnswer(fractions);
+    	System.out.println(answer);
     	System.out.println("Are you done yet?");
     	String finish = sc.next();
     	
@@ -76,22 +74,34 @@ public class FracCalc {
 	public static String produceAnswer(String fractions) { 
 		int[] fraction1 = toImproperFrac(splitOper(Oper1(Parse((fractions)))));
 		int[] fraction2 = toImproperFrac(splitOper(Oper2(Parse((fractions)))));
-		int[] answer = new int[2];
-		if (fractions.indexOf("+") != -1) {
-			if (fractions.indexOf("-") != -1) {
-				fraction1[1] = fraction1[1] * -1;
+		String[] operator = Parse(fractions);
+		String operatorSign = operator[1];
+		int[] answer = new int[3];
+		if (operatorSign.equals("+")) {
 				addition(fraction1, fraction2);
-				return " " + fraction1[0] + " +  "/" + " + fraction1[2]";
+				return " " + answer[1] + " / " + answer[2] + "";
+		} else if(operatorSign.equals("-")) {
+			fraction2[2] = fraction2[1] * -1;
+			addition(fraction1, fraction2);
+			return " " + answer[1] + " / " + answer[2] + "";
+			} else if(operatorSign.equals("/")) {
+				int switchNum = fraction2[2];
+		    	fraction2[2] = fraction2[1];
+		    	fraction2[1] = switchNum;
+				multiply(fraction1, fraction2);
+				return " " + answer[1] + " / " + answer[2] + "";
+			} else {
+				multiply(fraction1, fraction2);
+				return " " + answer[1] + " / " + answer[2] + "";
 			}
 		}
-    }
+    
     
     public static String[] Parse(String Parse)
     { 
         // TODO: Implement this function to produce the solution to the Parse
     	// Parse Both functions
     	String[] lastValue = Parse.split(" ");
-    	int arrlen = lastValue.length;
         return lastValue;
     // TODO: Fill in the space below with any helper methods that you think you will need
     }
@@ -105,15 +115,14 @@ public class FracCalc {
     	fraction2[1] = (fraction2[1] * fraction1[2]);
     	fraction1[2] = (fraction1[2] * fraction2[2]);
     	fraction1[0] = fraction1[1] + fraction1[2];
-    	int[] answer = {fraction1[0], fraction1[2]};
+    	int[] answer = {0,fraction1[0], fraction1[2]};
     	return answer;
     }
-    public static void divison(int[] fraction1, int[] fraction2) {
-    	int switchNum = fraction2[2];
-    	fraction2[2] = fraction2[1];
-    	fraction2[1] = switchNum;
+    public static int[] multiply(int[] fraction1, int[] fraction2) {
     	fraction1[0] = fraction1[1] * fraction2[1];
     	fraction2[0] = fraction1[2] * fraction2[2];
+    	int[] answer = {0,fraction1[0], fraction2[0]};
+    	return answer;
     
     }
 }

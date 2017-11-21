@@ -14,6 +14,7 @@ public class FracCalc {
     	System.out.println("Please input the fractions:");
     	String fractions = sc.nextLine();
     	String[] lastvalue = Parse(fractions);
+    	int[] answer = new int[2];
     	int firstTerm[] = (splitOper(Oper1(lastvalue)));
     	int SecondTerm[] = (splitOper(Oper2(lastvalue)));
     	System.out.println("Are you done yet?");
@@ -73,8 +74,15 @@ public class FracCalc {
      }
     
 	public static String produceAnswer(String fractions) { 
+		int[] fraction1 = toImproperFrac(splitOper(Oper1(Parse((fractions)))));
+		int[] fraction2 = toImproperFrac(splitOper(Oper2(Parse((fractions)))));
+		int[] answer = new int[2];
 		if (fractions.indexOf("+") != -1) {
-			//make an addition method
+			if (fractions.indexOf("-") != -1) {
+				fraction1[1] = fraction1[1] * -1;
+				addition(fraction1, fraction2);
+				return " " + fraction1[0] + " +  "/" + " + fraction1[2]";
+			}
 		}
     }
     
@@ -89,9 +97,24 @@ public class FracCalc {
     }
     public static int[] toImproperFrac (int[] fraction) {
     	fraction[1] = ((fraction[0] * fraction[2]) + fraction[1]);
+    	fraction[0] = 0;
     	return fraction; //make sure order of operation is true
     }
-    public static int[] addition(int[] fraction, int[] fraction2) {
-    	fraction[0] = (fraction[0] * fraction2[])
+    public static int[] addition(int[] fraction1, int[] fraction2) {
+    	fraction1[1] = (fraction1[1] * fraction2[2]);
+    	fraction2[1] = (fraction2[1] * fraction1[2]);
+    	fraction1[2] = (fraction1[2] * fraction2[2]);
+    	fraction1[0] = fraction1[1] + fraction1[2];
+    	int[] answer = {fraction1[0], fraction1[2]};
+    	return answer;
+    }
+    public static void divison(int[] fraction1, int[] fraction2) {
+    	int switchNum = fraction2[2];
+    	fraction2[2] = fraction2[1];
+    	fraction2[1] = switchNum;
+    	fraction1[0] = fraction1[1] * fraction2[1];
+    	fraction2[0] = fraction1[2] * fraction2[2];
+    
     }
 }
+

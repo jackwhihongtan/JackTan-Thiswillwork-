@@ -1,3 +1,4 @@
+//Jack Tan
 package fracCalc;
 
 import java.util.Arrays;
@@ -78,21 +79,21 @@ public class FracCalc {
 		String operatorSign = operator[1];
 		int[] answer = new int[3];
 		if (operatorSign.equals("+")) {
-				addition(fraction1, fraction2);
-				return " " + answer[1] + " / " + answer[2] + "";
+			answer = addition(fraction1, fraction2);
+			return "" + answer[1]+"/"+answer[2] + "";
 		} else if(operatorSign.equals("-")) {
-			fraction2[2] = fraction2[1] * -1;
-			addition(fraction1, fraction2);
-			return " " + answer[1] + " / " + answer[2] + "";
+			fraction2[1] = fraction2[1] * -1;
+			answer = addition(fraction1, fraction2);
+			return "" + answer[1]+"/"+answer[2] + "";
 			} else if(operatorSign.equals("/")) {
 				int switchNum = fraction2[2];
 		    	fraction2[2] = fraction2[1];
 		    	fraction2[1] = switchNum;
-				multiply(fraction1, fraction2);
-				return " " + answer[1] + " / " + answer[2] + "";
+		    	answer = multiply(fraction1, fraction2);
+		    	return "" + answer[1]+"/"+answer[2] + "";
 			} else {
-				multiply(fraction1, fraction2);
-				return " " + answer[1] + " / " + answer[2] + "";
+				answer = multiply(fraction1, fraction2);
+				return "" + answer[1]+"/"+answer[2] + "";
 			}
 		}
     
@@ -106,15 +107,23 @@ public class FracCalc {
     // TODO: Fill in the space below with any helper methods that you think you will need
     }
     public static int[] toImproperFrac (int[] fraction) {
+    	if (fraction[0] < 0) {
+    		fraction[0] = fraction[0] * -1;
     	fraction[1] = ((fraction[0] * fraction[2]) + fraction[1]);
     	fraction[0] = 0;
-    	return fraction; //make sure order of operation is true
+    	fraction[1] = fraction[1] * -1;
+    	return fraction;
+    	} else {
+    		fraction[1] = ((fraction[0] * fraction[2]) + fraction[1]);
+        	fraction[0] = 0;
+        	return fraction;
+    	}
     }
     public static int[] addition(int[] fraction1, int[] fraction2) {
     	fraction1[1] = (fraction1[1] * fraction2[2]);
     	fraction2[1] = (fraction2[1] * fraction1[2]);
     	fraction1[2] = (fraction1[2] * fraction2[2]);
-    	fraction1[0] = fraction1[1] + fraction1[2];
+    	fraction1[0] = fraction1[1] + fraction2[1];
     	int[] answer = {0,fraction1[0], fraction1[2]};
     	return answer;
     }
@@ -123,7 +132,35 @@ public class FracCalc {
     	fraction2[0] = fraction1[2] * fraction2[2];
     	int[] answer = {0,fraction1[0], fraction2[0]};
     	return answer;
-    
     }
+    public static String toString(int[] input) {
+    	
+    }
+    public static int[] reduceFraction(int[] answer) {
+    		int gcf = 0;
+    		int numerator = answer[1];
+    		int denom = answer[2];
+    	answer[1] = absoluteValue(numerator); //made values positive to make method work
+			answer[2] = absoluteValue(denom);
+				while (numerator != 0 && denom !=0 ) { //test for both zero for efficiency of code
+					int c = denom;  //declare new variable 
+					denom = numerator%denom;
+					numerator = c;
+				}
+					gcf = numerator + denom;
+		answer[1] = answer[1] % gcf;
+		answer[2] = answer[2] % gcf;
+		answer[0] = answer[1] / answer[2];
+		return answer;
+    }
+    	
+    public static int absoluteValue (int number) {
+    	if (number > 0) {
+			return number;
+		} else {
+			return number * -1;
+		}
+	}
 }
+    
 

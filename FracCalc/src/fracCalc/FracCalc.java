@@ -72,7 +72,7 @@ public class FracCalc {
      	}
      }
     
-	public static String produceAnswer(String fractions) { 
+	public static int[] produceAnswer(String fractions) { 
 		int[] fraction1 = toImproperFrac(splitOper(Oper1(Parse((fractions)))));
 		int[] fraction2 = toImproperFrac(splitOper(Oper2(Parse((fractions)))));
 		String[] operator = Parse(fractions);
@@ -80,20 +80,20 @@ public class FracCalc {
 		int[] answer = new int[3];
 		if (operatorSign.equals("+")) {
 			answer = addition(fraction1, fraction2);
-			return "" + answer[1]+"/"+answer[2] + "";
+			return answer;
 		} else if(operatorSign.equals("-")) {
 			fraction2[1] = fraction2[1] * -1;
 			answer = addition(fraction1, fraction2);
-			return "" + answer[1]+"/"+answer[2] + "";
+			return answer;
 			} else if(operatorSign.equals("/")) {
 				int switchNum = fraction2[2];
 		    	fraction2[2] = fraction2[1];
 		    	fraction2[1] = switchNum;
 		    	answer = multiply(fraction1, fraction2);
-		    	return "" + answer[1]+"/"+answer[2] + "";
+		    	return answer;
 			} else {
 				answer = multiply(fraction1, fraction2);
-				return "" + answer[1]+"/"+answer[2] + "";
+				return answer;
 			}
 		}
     
@@ -133,8 +133,10 @@ public class FracCalc {
     	int[] answer = {0,fraction1[0], fraction2[0]};
     	return answer;
     }
-    public static String toString(int[] input) {
-    	
+    public static String toString(int[] answer) {
+    	if(answer[1] > answer[2]) {
+    		
+    	}
     }
     public static int[] reduceFraction(int[] answer) {
     		int gcf = 0;
@@ -147,7 +149,7 @@ public class FracCalc {
 					denom = numerator%denom;
 					numerator = c;
 				}
-					gcf = numerator + denom;
+				gcf = numerator + denom;
 		answer[1] = answer[1] % gcf;
 		answer[2] = answer[2] % gcf;
 		answer[0] = answer[1] / answer[2];
